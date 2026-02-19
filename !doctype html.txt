@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Homeward — A Guided Path to Homeownership (Ohio)</title>
+  <meta name="description" content="Homeward helps Ohio residents move from renting to owning through a guided, step-by-step homeownership readiness process." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101a33;
+      --card2:#0f1730;
+      --text:#e9eefc;
+      --muted:#b7c1df;
+      --line:rgba(255,255,255,.12);
+      --accent:#7dd3fc;      /* light blue */
+      --accent2:#a78bfa;     /* purple */
+      --good:#86efac;        /* green */
+      --warn:#fde68a;        /* amber */
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --max: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 5%, rgba(125,211,252,.22), transparent 60%),
+        radial-gradient(900px 600px at 90% 15%, rgba(167,139,250,.18), transparent 55%),
+        radial-gradient(900px 600px at 55% 95%, rgba(134,239,172,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), #070b14 70%);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:16px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; letter-spacing:.2px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(125,211,252,.95), rgba(167,139,250,.95));
+      box-shadow: 0 10px 26px rgba(125,211,252,.12);
+      display:grid; place-items:center;
+    }
+    .logo svg{ width:22px; height:22px; opacity:.95; }
+    .navlinks{ display:flex; gap:16px; flex-wrap:wrap; }
+    .pill{
+      padding:10px 14px; border:1px solid var(--line); border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      font-size:14px; color:var(--muted);
+    }
+    .pill:hover{ border-color: rgba(255,255,255,.25); color:var(--text); }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:26px;
+      align-items:stretch;
+      padding:18px 0 10px;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left{ padding:26px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--good);
+      box-shadow: 0 0 0 4px rgba(134,239,172,.12);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.06;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){
+      h1{ font-size:36px; }
+    }
+    .sub{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.55;
+      max-width: 62ch;
+    }
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, rgba(125,211,252,.95), rgba(167,139,250,.95));
+      color:#07101d;
+      box-shadow: 0 18px 40px rgba(125,211,252,.18);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0px); }
+
+    .badges{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;
+    }
+    .badge{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .badge svg{ width:18px; height:18px; opacity:.9; }
+
+    .hero-right{ padding:18px; display:grid; gap:12px; }
+    .mini{
+      padding:16px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(16,26,51,.65);
+    }
+    .mini h3{ margin:0 0 8px; font-size:16px; }
+    .mini p{ margin:0; color:var(--muted); font-size:14px; line-height:1.55; }
+
+    .homes-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-top:8px;
+    }
+    .home-tile{
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      height:120px;
+      position:relative;
+      overflow:hidden;
+    }
+    .home-tile::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(120px 80px at 30% 25%, rgba(125,211,252,.35), transparent 60%),
+        radial-gradient(110px 70px at 70% 60%, rgba(167,139,250,.25), transparent 65%),
+        radial-gradient(130px 90px at 50% 100%, rgba(134,239,172,.14), transparent 60%);
+      transform: rotate(8deg);
+    }
+    .home-icon{
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      opacity:.92;
+    }
+    .home-icon svg{ width:52px; height:52px; }
+    .tile-label{
+      position:absolute; left:12px; bottom:10px;
+      font-size:13px; color:rgba(233,238,252,.9);
+      letter-spacing:.2px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+    }
+
+    section{ margin-top:26px; }
+    .section-card{ padding:22px; }
+    .section-title{
+      font-size:22px;
+      margin:0 0 12px;
+      letter-spacing:-.2px;
+    }
+    .grid3{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+    }
+    @media (max-width: 920px){ .grid3{ grid-template-columns: 1fr; } }
+
+    .step{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .step .num{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background: rgba(125,211,252,.12);
+      border:1px solid rgba(125,211,252,.25);
+      color: var(--text);
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .step h4{ margin:0 0 6px; font-size:16px; }
+    .step p{ margin:0; color:var(--muted); font-size:14px; line-height:1.55; }
+
+    .two-col{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    @media (max-width: 920px){ .two-col{ grid-template-columns: 1fr; } }
+
+    .faq{
+      display:grid; gap:10px;
+    }
+    details{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin:10px 0 0; color:var(--muted); font-size:14px; line-height:1.55; }
+
+    form{
+      display:grid; gap:12px;
+      margin-top:10px;
+    }
+    label{ font-size:14px; color: var(--muted); }
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color: var(--text);
+      outline: none;
+      font-family: var(--font);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .fineprint{
+      color: rgba(183,193,223,.85);
+      font-size: 12.5px;
+      line-height:1.5;
+      margin-top:10px;
+    }
+    .footer{
+      margin:30px 0 10px;
+      padding: 18px 0 0;
+      border-top:1px solid var(--line);
+      color: rgba(183,193,223,.85);
+      font-size: 13px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content: space-between;
+    }
+    .muted{ color: var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand" aria-label="Homeward">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 10.8 12 4l8 6.8V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.2Z" stroke="#07101d" stroke-width="1.8" />
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:16px;">Homeward</div>
+          <div class="muted" style="font-size:12px; margin-top:2px;">A guided path to homeownership — Ohio</div>
+        </div>
+      </div>
+
+      <nav class="navlinks" aria-label="Navigation">
+        <a class="pill" href="#how">How it works</a>
+        <a class="pill" href="#faq">FAQ</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <section class="card hero-left" aria-label="Hero">
+          <div class="kicker"><span class="dot"></span> Helping Ohio residents move from renting to owning — step by step</div>
+          <h1>Rent today. <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Own tomorrow.</span></h1>
+          <p class="sub">
+            Homeward is a guided homeownership readiness program. We provide quality homes and a structured plan to help qualified residents work toward
+            mortgage approval and homeownership in Ohio.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#contact" aria-label="Get started">
+              Get started
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="btn" href="#how" aria-label="See how it works">
+              See how it works
+              <span aria-hidden="true">↘</span>
+            </a>
+          </div>
+
+          <div class="badges" aria-label="Highlights">
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+              Guided plan & accountability
+            </div>
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 7h16M4 17h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Clear milestones to readiness
+            </div>
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 7 10 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Buy our home or any home
+            </div>
+          </div>
+        </section>
+
+        <aside class="card hero-right" aria-label="Sidebar">
+          <div class="mini">
+            <h3>What Homeward is</h3>
+            <p>
+              A structured program for residents who want to become homeowners.
+              We coordinate a practical plan, track progress, and help you prepare for the buying process.
+            </p>
+          </div>
+
+          <div class="mini">
+            <h3>What Homeward isn’t</h3>
+            <p>
+              We are not a lender and we don’t guarantee mortgage approval. We help you build a plan,
+              stay organized, and move forward with clarity.
+            </p>
+          </div>
+
+          <div class="homes-grid" aria-label="Generic home images">
+            <div class="home-tile" role="img" aria-label="Home image tile 1">
+              <div class="home-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 10.8 12 4l8 6.8V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.2Z" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+              </div>
+              <div class="tile-label">Renovated homes</div>
+            </div>
+            <div class="home-tile" role="img" aria-label="Home image tile 2">
+              <div class="home-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M3 21h18M6 21V9l6-5 6 5v12M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="tile-label">Starter-friendly</div>
+            </div>
+            <div class="home-tile" role="img" aria-label="Home image tile 3">
+              <div class="home-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="tile-label">Ohio-focused</div>
+            </div>
+            <div class="home-tile" role="img" aria-label="Home image tile 4">
+              <div class="home-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 20V10l5-4 5 4v10M9 20v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="tile-label">Guided path</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="how" class="card section-card" aria-label="How it works">
+        <h2 class="section-title">How Homeward works</h2>
+        <div class="grid3">
+          <div class="step">
+            <div class="num">1</div>
+            <h4>Apply & enroll</h4>
+            <p>Tell us about your goals. If it’s a fit, we enroll you in the Homeward program and outline a clear path forward.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h4>Build your readiness plan</h4>
+            <p>We help you understand what lenders typically look for and set practical milestones (income, documents, budget, timeline).</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h4>Graduate to homeownership</h4>
+            <p>When you’re ready, you can purchase the home you live in (when available) or buy any qualifying home in Ohio.</p>
+          </div>
+        </div>
+
+        <div style="height:14px;"></div>
+
+        <div class="two-col">
+          <div class="step">
+            <h4 style="margin-top:0;">Who this is for</h4>
+            <p>
+              Residents who want to become homeowners and are willing to follow a structured plan over time.
+              Many participants are strong payers who just need clarity, documentation readiness, and a consistent roadmap.
+            </p>
+          </div>
+          <div class="step">
+            <h4 style="margin-top:0;">What we provide</h4>
+            <p>
+              A guided process, progress tracking, accountability check-ins, and education around the home-buying journey.
+              We are Ohio-focused and committed to creating successful homeowners.
+            </p>
+          </div>
+        </div>
+
+        <p class="fineprint">
+          Note: Homeward is not a mortgage lender and does not guarantee mortgage approval. Participants are responsible for meeting lender requirements.
+        </p>
+      </section>
+
+      <section id="faq" class="card section-card" aria-label="FAQ">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Is Homeward rent-to-own?</summary>
+            <p>
+              Homeward is a guided homeownership readiness program. Some participants may choose to purchase the home they live in,
+              while others may buy a different qualifying home. The focus is creating homeowners through a structured plan.
+            </p>
+          </details>
+          <details>
+            <summary>Do you guarantee I’ll get approved for a mortgage?</summary>
+            <p>
+              No. Mortgage approval depends on lender requirements (income, debt-to-income, credit, documentation, etc.).
+              Homeward helps you understand and work toward those requirements over time.
+            </p>
+          </details>
+          <details>
+            <summary>What areas do you serve?</summary>
+            <p>
+              We focus on Ohio. Reach out with your county/city and we’ll confirm if we currently operate in your area.
+            </p>
+          </details>
+          <details>
+            <summary>Can I buy a different home instead of the one I live in?</summary>
+            <p>
+              Yes. Homeward is designed to help you become a homeowner — whether that’s the home you live in or another qualifying home.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section id="contact" class="card section-card" aria-label="Contact">
+        <h2 class="section-title">Contact Homeward</h2>
+        <p class="sub" style="margin-top:0;">
+          Share your information and we’ll follow up. This form opens your email client with your message pre-filled.
+        </p>
+
+        <!-- IMPORTANT: Replace YOUR_EMAIL_HERE@example.com with your real email -->
+        <form id="leadForm">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="(216) 555-1234" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@email.com" required />
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="city">City (Ohio)</label>
+              <input id="city" name="city" type="text" placeholder="Cleveland" />
+            </div>
+            <div>
+              <label for="timeline">Goal timeline</label>
+              <input id="timeline" name="timeline" type="text" placeholder="12–24 months" />
+            </div>
+          </div>
+
+          <div>
+            <label for="message">Tell us what you’re trying to accomplish</label>
+            <textarea id="message" name="message" placeholder="Example: I want to buy within 18 months. My income is steady but I need help understanding what lenders look for."></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Send to Homeward →</button>
+
+          <div class="fineprint">
+            By contacting Homeward, you agree to be contacted about the program. Homeward is not a lender.
+          </div>
+        </form>
+
+        <div style="height:14px;"></div>
+
+        <div class="step">
+          <h4 style="margin:0 0 6px;">Direct contact</h4>
+          <p class="muted" style="margin:0;">
+           Email: <span id="directEmail">alex@aegpllc.com</span><br/>
+Phone: 716-359-1155<br/>
+Program: Homeward (Ohio) 
+            Program: Homeward (Ohio)
+          </p>
+        </div>
+      </section>
+
+      <div class="footer" aria-label="Footer">
+        <div>© <span id="year"></span> Homeward. <span class="muted">All rights reserved.</span></div>
+        <div class="muted">A guided path to homeownership in Ohio.</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ====== CONFIG ======
+    const HOMEWARD_EMAIL = "alex@aegpllc.com";
+    const EMAIL_SUBJECT = "Homeward — Program Inquiry";
+
+    // Populate footer year + direct email display
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("directEmail").textContent = HOMEWARD_EMAIL;
+
+    // Mailto form handler (opens visitor's email client)
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const timeline = document.getElementById("timeline").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const bodyLines = [
+        "Homeward Program Inquiry",
+        "------------------------",
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone || "(not provided)"}`,
+        `City: ${city || "(not provided)"}`,
+        `Goal timeline: ${timeline || "(not provided)"}`,
+        "",
+        "Message:",
+        message || "(no message provided)"
+      ];
+
+      const mailto = `mailto:${encodeURIComponent(HOMEWARD_EMAIL)}`
+        + `?subject=${encodeURIComponent(EMAIL_SUBJECT)}`
+        + `&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>
